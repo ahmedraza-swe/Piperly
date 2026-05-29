@@ -1,0 +1,580 @@
+/**
+ * Marketing landing page (home) — scoped under .crm-landing
+ */
+
+.crm-landing {
+    --landing-radius: 1rem;
+    --landing-shadow: 0 4px 24px -4px rgb(111 39 229 / 0.12);
+    --landing-shadow-lg: 0 20px 50px -12px rgb(111 39 229 / 0.22);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .crm-landing .hero-mesh > .relative,
+    .crm-landing .trust-strip,
+    .crm-landing #features .feature-card,
+    .crm-landing .info-panel {
+        animation: landing-fade-up 0.7s ease both;
+    }
+
+    .crm-landing .hero-mesh > .relative {
+        animation-delay: 0.05s;
+    }
+
+    .crm-landing .trust-strip {
+        animation-delay: 0.15s;
+    }
+}
+
+@keyframes landing-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.crm-landing .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(111 39 229 / 0.15);
+    background: rgb(241 233 252);
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary-700);
+}
+
+.crm-landing .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    background: rgb(255 255 255 / 0.12);
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary-50);
+    backdrop-filter: blur(6px);
+}
+
+.crm-landing .hero-label::before {
+    content: '';
+    height: 0.4rem;
+    width: 0.4rem;
+    border-radius: 9999px;
+    background: rgb(52 211 153);
+    box-shadow: 0 0 0 3px rgb(52 211 153 / 0.35);
+}
+
+.crm-landing .section-title {
+    margin-top: 1rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-primary-950);
+}
+
+.crm-landing .section-lead {
+    margin-top: 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: rgb(75 85 99);
+}
+
+/* Hero */
+.crm-landing .hero-mesh {
+    background:
+        radial-gradient(ellipse 80% 60% at 70% 0%, rgb(255 255 255 / 0.14), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgb(0 0 0 / 0.2), transparent 50%),
+        linear-gradient(165deg, var(--color-primary-600) 0%, var(--color-primary-500) 45%, var(--color-primary-800) 100%);
+}
+
+.crm-landing .hero-grid {
+    background-image:
+        linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+}
+
+.crm-landing .hero-preview {
+    border: 1px solid rgb(255 255 255 / 0.22);
+    background: linear-gradient(145deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.05));
+    box-shadow:
+        0 25px 60px -15px rgb(0 0 0 / 0.35),
+        inset 0 1px 0 rgb(255 255 255 / 0.15);
+    backdrop-filter: blur(14px);
+}
+
+@media (min-width: 1024px) {
+    .crm-landing .hero-preview {
+        transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+        transform-origin: center right;
+    }
+}
+
+.crm-landing .hero-stat {
+    border: 1px solid rgb(255 255 255 / 0.18);
+    background: rgb(255 255 255 / 0.08);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.crm-landing .hero-stat:hover {
+    transform: translateY(-2px);
+    border-color: rgb(255 255 255 / 0.3);
+    background: rgb(255 255 255 / 0.12);
+}
+
+.crm-landing .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 11rem;
+    border-radius: 9999px;
+    border: 2px solid rgb(255 255 255 / 0.85);
+    background: white;
+    padding: 0.8rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary-800);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.crm-landing .btn-hero-primary:hover {
+    transform: translateY(-1px);
+    background: var(--color-primary-50);
+    box-shadow: 0 12px 36px rgb(0 0 0 / 0.2);
+}
+
+.crm-landing .btn-hero-primary:focus-visible,
+.crm-landing .btn-hero-secondary:focus-visible,
+.crm-landing .btn-cta-light:focus-visible,
+.crm-landing .btn-cta-outline:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+.crm-landing .btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 11rem;
+    border-radius: 9999px;
+    border: 2px solid rgb(255 255 255 / 0.35);
+    background: rgb(255 255 255 / 0.1);
+    padding: 0.8rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: white;
+    backdrop-filter: blur(4px);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.crm-landing .btn-hero-secondary:hover {
+    border-color: rgb(255 255 255 / 0.55);
+    background: rgb(255 255 255 / 0.18);
+}
+
+/* Trust strip */
+.crm-landing .trust-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .crm-landing .trust-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
+
+.crm-landing .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(243 244 246);
+    background: rgb(249 250 251);
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgb(55 65 81);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crm-landing .trust-item:hover {
+    border-color: rgb(210 188 247);
+    box-shadow: 0 4px 16px -6px rgb(111 39 229 / 0.15);
+}
+
+.crm-landing .trust-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary-100), white);
+    padding: 0.4rem;
+    color: var(--color-primary-600);
+}
+
+/* Feature cards */
+.crm-landing .feature-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(229 231 235);
+    background: white;
+    padding: 1.75rem;
+    box-shadow: var(--landing-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.crm-landing .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary-400), var(--color-primary-600));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.crm-landing .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(189 156 243);
+    box-shadow: var(--landing-shadow-lg);
+}
+
+.crm-landing .feature-card:hover::before {
+    opacity: 1;
+}
+
+.crm-landing .feature-card--highlight {
+    border-color: rgb(140 82 234 / 0.35);
+    background: linear-gradient(160deg, rgb(241 233 252) 0%, white 55%);
+}
+
+.crm-landing .feature-card--highlight .feature-icon {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+    color: white;
+}
+
+.crm-landing .feature-icon {
+    display: inline-flex;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-50));
+    padding: 0.65rem;
+    color: var(--color-primary-600);
+}
+
+/* Steps */
+.crm-landing .step-item {
+    position: relative;
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem 1.25rem 1.25rem 0;
+}
+
+.crm-landing .step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 1.15rem;
+    top: 3rem;
+    bottom: -0.5rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-primary-300), transparent);
+}
+
+.crm-landing .step-num {
+    display: flex;
+    height: 2.35rem;
+    width: 2.35rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 14px rgb(111 39 229 / 0.35);
+}
+
+/* Vendor card */
+.crm-landing .info-panel {
+    border-radius: 1.25rem;
+    border: 1px solid rgb(210 188 247);
+    background: white;
+    padding: 2rem;
+    box-shadow: var(--landing-shadow-lg);
+}
+
+.crm-landing .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border-radius: 0.75rem;
+    background: rgb(249 250 251);
+    padding: 1rem 1.15rem;
+    transition: background 0.2s ease;
+}
+
+.crm-landing .info-row:hover {
+    background: rgb(241 233 252 / 0.5);
+}
+
+@media (min-width: 640px) {
+    .crm-landing .info-row {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* Pricing */
+.crm-landing .pricing-section {
+    background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgb(241 233 252 / 0.9), transparent 70%),
+        white;
+}
+
+.crm-landing .pricing .md\:max-w-6xl {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.75rem;
+    max-width: 52rem;
+    margin-inline: auto;
+}
+
+.crm-landing .pricing .md\:basis-1\/3\! {
+    flex: 1 1 18rem;
+    max-width: 22rem;
+    padding-inline: 0 !important;
+}
+
+.crm-landing .pricing [class*='border-primary-500'] {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-width: 2px;
+    border-radius: 1.25rem !important;
+    background: white;
+    box-shadow: var(--landing-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.crm-landing .pricing [class*='border-primary-500']:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-primary-400);
+    box-shadow: var(--landing-shadow-lg);
+}
+
+.crm-landing .pricing [class*='border-primary-500'] .text-4xl {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-primary-900);
+}
+
+.crm-landing .pricing [class*='border-primary-500'] > a,
+.crm-landing .pricing [class*='border-primary-500'] .btn {
+    margin-top: auto;
+}
+
+/* Plan feature lists — left-aligned, equal row rhythm */
+.crm-landing .pricing .plan-features {
+    min-height: 12rem;
+}
+
+.crm-landing .pricing .plan-features-list {
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.crm-landing .pricing .plan-features-list .plan-feature-item {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.65rem;
+    min-height: 2.625rem;
+    padding: 0.15rem 0;
+    text-align: left;
+}
+
+.crm-landing .pricing .plan-features-list .plan-feature-item > span:first-child {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 0.1rem 0 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0;
+    border-radius: 9999px;
+    background: var(--color-primary-100);
+}
+
+.crm-landing .pricing .plan-features-list .plan-feature-item > span:last-child {
+    flex: 1;
+    padding-top: 0.1rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: rgb(55 65 81);
+}
+
+/* FAQ */
+.crm-landing .faq-wrap .join {
+    gap: 0.75rem;
+    border: none;
+    background: transparent;
+}
+
+.crm-landing .faq-wrap .collapse {
+    border-radius: 1rem !important;
+    border: 1px solid rgb(229 231 235) !important;
+    background: white !important;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crm-landing .faq-wrap .collapse:has(input:checked),
+.crm-landing .faq-wrap .collapse[open] {
+    border-color: rgb(189 156 243) !important;
+    box-shadow: 0 8px 24px -8px rgb(111 39 229 / 0.18);
+}
+
+.crm-landing .faq-wrap .collapse-title {
+    font-weight: 600;
+    color: var(--color-primary-900);
+}
+
+.crm-landing .faq-wrap .collapse-content {
+    color: rgb(75 85 99);
+    line-height: 1.65;
+}
+
+/* CTA */
+.crm-landing .cta-band {
+    background:
+        radial-gradient(ellipse 80% 100% at 50% 120%, rgb(255 255 255 / 0.12), transparent),
+        linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+}
+
+.crm-landing .btn-cta-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: white;
+    padding: 0.85rem 2rem;
+    font-weight: 600;
+    color: var(--color-primary-800);
+    box-shadow: 0 10px 40px rgb(0 0 0 / 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.crm-landing .btn-cta-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 48px rgb(0 0 0 / 0.25);
+}
+
+.crm-landing .btn-cta-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 2px solid rgb(255 255 255 / 0.5);
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    color: white;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.crm-landing .btn-cta-outline:hover {
+    border-color: white;
+    background: rgb(255 255 255 / 0.1);
+}
+
+/* Sticky header — dark bar for contrast vs purple hero */
+.crm-landing-page nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    background: linear-gradient(180deg, rgb(20 8 40 / 0.98), rgb(31 10 63 / 0.98));
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 32px -8px rgb(0 0 0 / 0.45);
+}
+
+.crm-landing-page nav .navbar {
+    min-height: 4rem;
+}
+
+.crm-landing-page nav a:not([class*='bg-']):not(.btn) {
+    color: rgb(241 233 252);
+    transition: color 0.15s ease;
+}
+
+.crm-landing-page nav a:not([class*='bg-']):not(.btn):hover {
+    color: white;
+}
+
+.crm-landing-page nav .menu a,
+.crm-landing-page nav [class*='navbar'] a.text-primary-50,
+.crm-landing-page nav [class*='navbar'] a.text-white {
+    color: rgb(226 214 248) !important;
+    font-weight: 500;
+}
+
+.crm-landing-page nav .menu a:hover,
+.crm-landing-page nav [class*='navbar-center'] a:hover {
+    color: white !important;
+    background: rgb(255 255 255 / 0.08) !important;
+}
+
+.crm-landing-page nav .dropdown-content {
+    border-color: rgb(255 255 255 / 0.12) !important;
+    background: rgb(31 10 63) !important;
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.35) !important;
+}
+
+.crm-landing-page nav .navbar-end .btn,
+.crm-landing-page nav .navbar-end a[class*='button'],
+.crm-landing-page nav .navbar-end a[class*='secondary'] {
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    background: white !important;
+    color: var(--color-primary-800) !important;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.25);
+}
+
+.crm-landing-page nav .navbar-end .btn:hover,
+.crm-landing-page nav .navbar-end a[class*='secondary']:hover {
+    background: var(--color-primary-50) !important;
+    color: var(--color-primary-900) !important;
+}
+
+/* Seamless footer after CTA */
+.crm-landing-page footer {
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+}
