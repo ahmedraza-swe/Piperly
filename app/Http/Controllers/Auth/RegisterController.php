@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Trait\RedirectAwareTrait;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\TenantCreationService;
+use App\Services\TrialProvisioningService;
 use App\Services\UserService;
 use App\Validator\RegisterValidator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -40,6 +41,7 @@ class RegisterController extends Controller
         private RegisterValidator $registerValidator,
         private UserService $userService,
         private TenantCreationService $tenantCreationService,
+        private TrialProvisioningService $trialProvisioningService,
     ) {
         $this->middleware('guest');
     }
@@ -77,7 +79,12 @@ class RegisterController extends Controller
     protected function registered(Request $request, User $user): void
     {
         $companyName = (string) $request->input('company_name', '');
-        $this->tenantCreationService->createTenantWithName($user, $companyName);
+        $tenant = $this->tenantCreationService->createTenantWithName($user, $companyName);
+        $subscription = $this->trialProvisioningService->provisionForNewWorkspace($user, $tenant);
+
+        if ($subscription !== null) {
+            session()->flash('status', __('Your 7-day free trial has started. Welcome to :app!', ['app' => config('app.name')]));
+        }
     }
 
     /**

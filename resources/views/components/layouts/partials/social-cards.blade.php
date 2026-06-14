@@ -1,5 +1,5 @@
-<meta name="twitter:title" content="{{ !empty($title) ? $title : config('app.name', 'CRMercy') }}" />
-<meta name="twitter:description" content="{{ !empty($description) ? $description : config('app.description', 'CRMercy') }}" />
+<meta name="twitter:title" content="{{ !empty($title) ? $title : config('app.name', 'Piperly') }}" />
+<meta name="twitter:description" content="{{ !empty($description) ? $description : config('app.description') }}" />
 
 @if (config('open-graphy.enabled', false) && !empty($title) && !request()->routeIs('home'))
     @if (!empty($socialCard))
@@ -13,7 +13,7 @@
     <meta property="og:image" content="{{ !empty($socialCard) ? $socialCard : asset('images/facebook-card.png')}}" />
 @endif
 
-<meta property="og:title" content="{{ !empty($title) ? $title : config('app.name', 'CRMercy') }}" />
+<meta property="og:title" content="{{ !empty($title) ? $title : config('app.name', 'Piperly') }}" />
 <meta property="og:url" content="{{route('home')}}" />
 
-<meta property="og:description" content="{{ !empty($description) ? $description : config('app.description', 'CRMercy') }}" />
+<meta property="og:description" content="{{ !empty($description) ? $description : config('app.description') }}" />

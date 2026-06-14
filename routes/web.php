@@ -110,6 +110,11 @@ Route::get('/auth/{provider}/callback', [OAuthController::class, 'callback'])
     ->where('provider', 'google|github|facebook|twitter-oauth-2|linkedin-openid|bitbucket|gitlab')
     ->name('auth.oauth.callback');
 
+Route::get('/checkout/plan/{planSlug}/trial', [
+    App\Http\Controllers\SubscriptionCheckoutController::class,
+    'trialCheckout',
+])->name('checkout.trial');
+
 Route::get('/checkout/plan/{planSlug}', [
     App\Http\Controllers\SubscriptionCheckoutController::class,
     'subscriptionCheckout',

@@ -40,12 +40,12 @@ class CrmPublicPlansSeeder extends Seeder
                 'description' => 'For small teams getting started with CRM.',
                 'is_popular' => false,
                 'monthly_cents' => 2900,
-                'trial_days' => 14,
+                'trial_days' => 7,
                 'features' => [
                     ['feature' => 'Leads, contacts & deals'],
                     ['feature' => 'Deal board & activities'],
                     ['feature' => 'Team workspace (up to 3 users)'],
-                    ['feature' => '14-day free trial'],
+                    ['feature' => '7-day free trial'],
                 ],
             ],
             [
@@ -54,13 +54,13 @@ class CrmPublicPlansSeeder extends Seeder
                 'description' => 'For growing sales teams that need automation and reports.',
                 'is_popular' => true,
                 'monthly_cents' => 7900,
-                'trial_days' => 14,
+                'trial_days' => 7,
                 'features' => [
                     ['feature' => 'Everything in Starter'],
                     ['feature' => 'Advanced reports & exports'],
                     ['feature' => 'Automation rules'],
                     ['feature' => 'AI assistant (when enabled)'],
-                    ['feature' => '14-day free trial'],
+                    ['feature' => '7-day free trial'],
                 ],
             ],
         ];
@@ -98,6 +98,6 @@ class CrmPublicPlansSeeder extends Seeder
             );
         }
 
-        $this->command?->info('Public CRM plans seeded: starter, growth (monthly + 14-day trial).');
+        $this->command?->info('Public CRM plans seeded: starter, growth (monthly + 7-day trial).');
     }
 }

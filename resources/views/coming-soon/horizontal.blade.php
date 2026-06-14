@@ -9,12 +9,12 @@
                 <x-heading.h1 class="mt-4 text-primary-500 font-bold">
                     {{ __('Build ') }} <span class="">{{ __('your SaaS') }}</span>
                     <br class="hidden sm:block">
-                    {{ __('with SaaSykit') }}
+                    {{ __('with :app', ['app' => config('app.name')]) }}
                 </x-heading.h1>
 
 
                 <div class="mt-8">
-                    <p class="text-primary-900">{{ __('SaaSykit is built using the beautiful Laravel framework (using TALL) and offers an intuitive Filament admin panel that houses all the pre-built components like product, plans, discounts, payment providers, email providers, transactions, blog, user & role management, and much more.') }}</p>
+                    <p class="text-primary-900">{{ __(':app is a multi-tenant CRM for leads, deals, contacts, and sales follow-ups—built for growing teams.', ['app' => config('app.name')]) }}</p>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <x-heading.h3 class="mx-auto pt-2">
                     {{ __('Order') }}
                 </x-heading.h3>
-                <p class="mt-2">{{ __('Order your SaaSykit license.') }}</p>
+                <p class="mt-2">{{ __('Start your :app trial.', ['app' => config('app.name')]) }}</p>
             </x-section.column>
 
             <x-section.column class="flex flex-col items-center justify-center text-center">
@@ -67,7 +67,7 @@
                 <x-heading.h3 class="mx-auto pt-2">
                     {{ __('Build') }}
                 </x-heading.h3>
-                <p class="mt-2">{{ __('Build your SaaS with SaaSykit.') }}</p>
+                <p class="mt-2">{{ __('Set up your :app workspace.', ['app' => config('app.name')]) }}</p>
             </x-section.column>
 
             <x-section.column class="flex flex-col items-center justify-center text-center">

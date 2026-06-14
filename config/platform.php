@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'owner_email' => env('PLATFORM_OWNER_EMAIL', 'owner@crmercy.test'),
+    'owner_email' => env('PLATFORM_OWNER_EMAIL', 'owner@piperly.test'),
 
     'owner_password' => env('PLATFORM_OWNER_PASSWORD', 'ChangeMe-Platform-2026!'),
 
@@ -29,6 +29,8 @@ return [
         'growth',
     ],
 
-    'support_email' => env('PLATFORM_SUPPORT_EMAIL', 'support@crmercy.test'),
+    'default_trial_plan_slug' => env('PLATFORM_DEFAULT_TRIAL_PLAN_SLUG', 'starter-monthly'),
+
+    'support_email' => env('PLATFORM_SUPPORT_EMAIL', 'support@piperly.test'),
 
 ];

@@ -25,14 +25,14 @@ class PaymentProvidersSeeder extends Seeder
                 'name' => 'Paddle',
                 'slug' => PaymentProviderConstants::PADDLE_SLUG,
                 'type' => 'multi',
-                'is_active' => true,
+                'is_active' => false,
                 'sort' => 2,
             ],
             [
                 'name' => 'Lemon Squeezy',
                 'slug' => PaymentProviderConstants::LEMON_SQUEEZY_SLUG,
                 'type' => 'multi',
-                'is_active' => true,
+                'is_active' => false,
                 'sort' => 3,
             ],
             [

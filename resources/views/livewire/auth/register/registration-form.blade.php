@@ -41,11 +41,21 @@
                 {{ __('We will send you a one-time login code to the email address provided.') }}
             </p>
 
+            @if (config('app.trial_without_payment.enabled'))
+                <p class="mt-3 rounded-xl border border-primary-200 bg-primary-50/70 px-4 py-3 text-sm text-primary-900">
+                    {{ __('Your 7-day free trial starts when you create your account. No credit card required.') }}
+                </p>
+            @endif
+
         </div>
 
         <div>
             <x-button-link.primary class="inline-block w-full! my-2" elementType="button" type="submit">
-                {{ __('Register') }}
+                @if (config('app.trial_without_payment.enabled'))
+                    {{ __('Create account & start free trial') }}
+                @else
+                    {{ __('Register') }}
+                @endif
             </x-button-link.primary>
         </div>
     </form>

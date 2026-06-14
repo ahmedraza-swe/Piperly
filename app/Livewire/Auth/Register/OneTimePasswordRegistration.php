@@ -4,6 +4,7 @@ namespace App\Livewire\Auth\Register;
 
 use App\Services\OneTimePasswordService;
 use App\Services\TenantCreationService;
+use App\Services\TrialProvisioningService;
 use App\Services\UserService;
 use App\Validator\RegisterValidator;
 use Illuminate\Contracts\View\View;
@@ -15,7 +16,7 @@ class OneTimePasswordRegistration extends Component
     public string $email;
 
     public string $name;
-    public string $company_name;
+    public string $company_name = '';
 
     private RegisterValidator $registerValidator;
 
@@ -25,16 +26,20 @@ class OneTimePasswordRegistration extends Component
 
     private TenantCreationService $tenantCreationService;
 
+    private TrialProvisioningService $trialProvisioningService;
+
     public function boot(
         RegisterValidator $registerValidator,
         UserService $userService,
         OneTimePasswordService $oneTimePasswordService,
         TenantCreationService $tenantCreationService,
+        TrialProvisioningService $trialProvisioningService,
     ) {
         $this->registerValidator = $registerValidator;
         $this->userService = $userService;
         $this->oneTimePasswordService = $oneTimePasswordService;
         $this->tenantCreationService = $tenantCreationService;
+        $this->trialProvisioningService = $trialProvisioningService;
     }
 
     public function render(): View
@@ -71,7 +76,8 @@ class OneTimePasswordRegistration extends Component
         }
 
         $user = $this->userService->createUser($userFields);
-        $this->tenantCreationService->createTenantWithName($user, $this->company_name);
+        $tenant = $this->tenantCreationService->createTenantWithName($user, $this->company_name);
+        $this->trialProvisioningService->provisionForNewWorkspace($user, $tenant);
 
         if (! $this->oneTimePasswordService->sendCode($user)) {
             $this->addError('email', __('Failed to send one-time password. Please try again later.'));

@@ -1,10 +1,10 @@
-## CRMercy - AI-Powered Multi-Tenant SaaS CRM
+## Piperly - AI-Powered Multi-Tenant SaaS CRM
 
 Complete Laravel build guide for a modern CRM SaaS product.
 
 ## 1) Product Definition
 
-CRMercy is a **B2B multi-tenant CRM SaaS** where each customer company gets an isolated workspace to manage leads, deals, customers, communication, and automation.
+Piperly is a **B2B multi-tenant CRM SaaS** where each customer company gets an isolated workspace to manage leads, deals, customers, communication, and automation.
 
 ### Core outcomes
 - Capture and manage leads from multiple sources
@@ -18,8 +18,8 @@ CRMercy is a **B2B multi-tenant CRM SaaS** where each customer company gets an i
 ### Tenancy model
 - Tenancy strategy: **database per tenant** (stancl/tenancy)
 - App access pattern:
-  - Platform (super admin): `app.crmercy.com/admin`
-  - Tenant app: `tenant-slug.crmercy.com/dashboard`
+  - Platform (super admin): `app.piperly.com/admin`
+  - Tenant app: `tenant-slug.piperly.com/dashboard`
 
 ### Roles
 - **Super Admin (Platform Owner):** manage tenants, plans, billing, abuse, platform analytics
@@ -232,7 +232,7 @@ Right now we should implement in this exact order:
 3. Wire KPI dashboard cards from real tables
 4. Add AI Copilot basic actions (email draft + lead score)
 
-This ensures CRMercy launches as a real modern CRM SaaS, not a template.
+This ensures Piperly launches as a real modern CRM SaaS, not a template.
 
 ## 15) Demo CRM data (local)
 

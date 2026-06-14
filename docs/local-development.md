@@ -8,7 +8,7 @@ Two supported setups: **Laragon** (what you use today) and **Docker Sail** (prod
    ```bash
    copy .env.laragon.example .env
    ```
-2. Create MySQL database (e.g. `crmercy`) in Laragon.
+2. Create MySQL database (e.g. `piperly`) in Laragon.
 3. Install dependencies:
    ```bash
    composer install
@@ -67,7 +67,9 @@ Horizon dashboard (local): **http://localhost:8080/horizon** (platform admin log
 | Role | URL | Credentials |
 |------|-----|-------------|
 | Platform owner | `/admin` | `PLATFORM_OWNER_EMAIL` / `PLATFORM_OWNER_PASSWORD` from `.env` |
-| Customer | `/login` | Register via home → trial checkout |
+| Customer | `/login` | Register via home → trial or paid checkout |
+
+**Subscription flows (trial + Stripe):** [subscription-flows.md](subscription-flows.md)
 
 ## GitHub & CI
 

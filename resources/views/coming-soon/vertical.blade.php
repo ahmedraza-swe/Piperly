@@ -9,11 +9,11 @@
             <x-heading.h1 class="mt-4 text-primary-500 font-bold">
                 {{ __('Build your SaaS') }}
                 <br class="hidden sm:block">
-                {{ __('with SaaSykit') }}
+                {{ __('with :app', ['app' => config('app.name')]) }}
             </x-heading.h1>
 
             <div class="text-center mx-auto md:max-w-4xl mt-8">
-                <p class="text-primary-900 m-3">{{ __('SaaSykit is built using the beautiful Laravel framework (using TALL) and offers an intuitive Filament admin panel that houses all the pre-built components like product, plans, discounts, payment providers, email providers, transactions, blog, user & role management, and much more.') }}</p>
+                <p class="text-primary-900 m-3">{{ __(':app is a multi-tenant CRM for leads, deals, contacts, and sales follow-ups—built for growing teams.', ['app' => config('app.name')]) }}</p>
             </div>
 
             <div class="card md:max-w-2xl bg-base-100 shadow-xl bg-linear-to-b from-primary-50 to-from-primary-100 my-8 mx-auto">

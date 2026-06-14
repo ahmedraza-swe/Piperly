@@ -1,9 +1,14 @@
 @props(['plan'])
 
 @inject('planService', 'App\Services\PlanService')
+@inject('subscriptionService', 'App\Services\SubscriptionService')
 
 @php
     $price = $planService->getPlanPrice($plan);
+    $showTrialOffers = request()->routeIs('home')
+        && $plan->has_trial
+        && config('app.trial_without_payment.enabled')
+        && $subscriptionService->canUserHaveSubscriptionTrial(auth()->user());
 @endphp
 
 <div {{$attributes->merge(['class' => 'relative px-5 py-10 flex flex-col gap-4 mx-auto text-center border-2 border-primary-500 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition'])}}>
@@ -81,11 +86,22 @@
         </ul>
     </div>
 
-    <x-button-link.primary href="{{ route('checkout.subscription', $plan->slug) }}" class="w-full justify-center">
-        @if (request()->routeIs('home'))
-            {{ __('Start free trial') }}
-        @else
-            {{ __('Buy') }} {{ $plan->product->name }}
-        @endif
-    </x-button-link.primary>
+    @if ($showTrialOffers)
+        <div class="flex w-full flex-col gap-2">
+            <x-button-link.primary href="{{ route('checkout.trial', $plan->slug) }}" class="w-full justify-center">
+                {{ __('Start 7-day trial') }}
+            </x-button-link.primary>
+            <x-button-link.primary-outline href="{{ route('checkout.subscription', $plan->slug) }}" class="w-full justify-center">
+                {{ __('Subscribe now') }}
+            </x-button-link.primary-outline>
+        </div>
+    @else
+        <x-button-link.primary href="{{ route('checkout.subscription', $plan->slug) }}" class="w-full justify-center">
+            @if (request()->routeIs('home'))
+                {{ __('Subscribe now') }}
+            @else
+                {{ __('Buy') }} {{ $plan->product->name }}
+            @endif
+        </x-button-link.primary>
+    @endif
 </div>

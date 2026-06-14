@@ -27,6 +27,7 @@ use App\Services\VerificationProviders\TwilioProvider;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
@@ -94,6 +95,18 @@ class AppServiceProvider extends ServiceProvider
         FilamentAsset::register([
             Js::make('components-script', __DIR__.'/../../resources/js/components.js'),
         ]);
+
+        $this->registerIntlSafeMoneyDirective();
+    }
+
+    /**
+     * cknow/money @money requires ext-intl (NumberFormatter). Laragon often ships without it.
+     */
+    private function registerIntlSafeMoneyDirective(): void
+    {
+        Blade::directive('money', function (string $expression) {
+            return "<?php echo \\App\\Support\\LocaleMoney::formatMinorUnits({$expression}); ?>";
+        });
     }
 
     /**

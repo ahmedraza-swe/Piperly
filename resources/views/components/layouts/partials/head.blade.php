@@ -6,9 +6,9 @@
 
 <title>
     @isset($title)
-        {{ $title }} | {{ config('app.name', 'CRMercy') }}
+        {{ $title }} | {{ config('app.name', 'Piperly') }}
     @else
-        {{ config('app.name', 'CRMercy') }}
+        {{ config('app.name', 'Piperly') }}
     @endisset
 </title>
 

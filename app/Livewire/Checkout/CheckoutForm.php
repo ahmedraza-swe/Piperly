@@ -11,6 +11,7 @@ use App\Services\PaymentProviders\PaymentService;
 use App\Services\UserService;
 use App\Validator\LoginValidator;
 use App\Validator\RegisterValidator;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Spatie\OneTimePasswords\Rules\OneTimePasswordRule;
@@ -25,6 +26,8 @@ class CheckoutForm extends Component
     public $email;
 
     public $password;
+
+    public bool $minimalSignup = false;
 
     public $paymentProvider;
 
@@ -112,10 +115,32 @@ class CheckoutForm extends Component
         }
 
         if (! $result) {
+            $message = $this->minimalSignup
+                ? __('Incorrect password. Use "Email me a sign-in link" below if you started a trial without choosing a password.')
+                : __('Wrong email or password');
+
             throw ValidationException::withMessages([
-                'email' => __('Wrong email or password'),
+                'password' => $message,
             ]);
         }
+    }
+
+    public function requestSignInLink(): void
+    {
+        $this->validate([
+            'email' => ['required', 'email'],
+        ]);
+
+        Password::sendResetLink(['email' => strtolower(trim($this->email))]);
+
+        $hint = config('mail.default') === 'log'
+            ? ' '.__('With mail logging enabled, open storage/logs/laravel.log to find the reset link.')
+            : '';
+
+        session()->flash(
+            'sign_in_link_sent',
+            __('If this email is registered, we sent a sign-in link to your inbox.').$hint
+        );
     }
 
     protected function registerUser(RegisterValidator $registerValidator, UserService $userService)
@@ -126,21 +151,34 @@ class CheckoutForm extends Component
             'password' => $this->password,
         ];
 
-        $validator = $registerValidator->validate($fields, passwordConfirmed: false);
+        $validator = $registerValidator->validate(
+            $fields,
+            passwordConfirmed: false,
+            passwordOptional: $this->minimalSignup,
+        );
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
-        $user = $userService->createUser([
+        $userData = [
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
-        ]);
+        ];
+
+        if (! $this->minimalSignup) {
+            $userData['password'] = $this->password;
+        }
+
+        $user = $userService->createUser($userData);
 
         auth()->login($user);
 
         $user->sendEmailVerificationNotification();
+
+        if ($this->minimalSignup) {
+            Password::sendResetLink(['email' => $user->email]);
+        }
 
         return $user;
     }

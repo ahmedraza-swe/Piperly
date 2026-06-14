@@ -9,7 +9,7 @@
         </x-heading.h1>
 
         <p class="mb-6">
-        Please read these Terms of Service (“Terms”, “Terms of Service”) carefully before using the {{ config('app.url', '') }} website (the “Service”) operated by {{ config('app.name', 'SaaSykit') }} (“us”, “we”, or “our”).
+        Please read these Terms of Service (“Terms”, “Terms of Service”) carefully before using the {{ config('app.url', '') }} website (the “Service”) operated by {{ config('app.name') }} (“us”, “we”, or “our”).
         </p>
 
         <p class="mb-6">
@@ -31,12 +31,12 @@
 
         <p class="mb-6">
         Some parts of the Service are billed on a subscription basis (“Subscription(s)”). You will be billed in advance on a recurring and periodic basis (“Billing Cycle”). Billing cycles are set either on a monthly or annual basis, depending on the type of subscription plan you select when purchasing a Subscription.
-        At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or {{ config('app.name', 'SaaSykit') }} cancels it. You may cancel your Subscription renewal by contacting {{ config('app.name', 'SaaSykit') }} customer support team or by canceling the Subscription from your account dashboard.
+        At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or {{ config('app.name') }} cancels it. You may cancel your Subscription renewal by contacting {{ config('app.name') }} customer support team or by canceling the Subscription from your account dashboard.
         </p>
 
         <p class="mb-6">
-        A valid payment method, including credit card, is required to process the payment for your Subscription. You shall provide {{ config('app.name', 'SaaSykit') }} with accurate and complete billing information, including full name, address, state, zip code, telephone number, and valid payment method information. By submitting such payment information, you automatically authorize {{ config('app.name', 'SaaSykit') }} to charge all Subscription fees incurred through your account to any such payment instruments.
-        Should automatic billing fail to occur for any reason, {{ config('app.name', 'SaaSykit') }} will issue an electronic invoice indicating that you must proceed manually, within a certain deadline date, with the full payment corresponding to the billing period as indicated on the invoice.
+        A valid payment method, including credit card, is required to process the payment for your Subscription. You shall provide {{ config('app.name') }} with accurate and complete billing information, including full name, address, state, zip code, telephone number, and valid payment method information. By submitting such payment information, you automatically authorize {{ config('app.name') }} to charge all Subscription fees incurred through your account to any such payment instruments.
+        Should automatic billing fail to occur for any reason, {{ config('app.name') }} will issue an electronic invoice indicating that you must proceed manually, within a certain deadline date, with the full payment corresponding to the billing period as indicated on the invoice.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -44,10 +44,10 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }} may, at its sole discretion, offer a Subscription with a free trial for a limited period of time (“Free Trial”).
+        {{ config('app.name') }} may, at its sole discretion, offer a Subscription with a free trial for a limited period of time (“Free Trial”).
         You may be required to enter your billing information in order to sign up for the Free Trial.
-        If you do enter your billing information when signing up for the Free Trial, you will not be charged by {{ config('app.name', 'SaaSykit') }} until the Free Trial has expired. On the last day of the Free Trial period, unless you canceled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
-        At any time and without notice, {{ config('app.name', 'SaaSykit') }} reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.
+        If you do enter your billing information when signing up for the Free Trial, you will not be charged by {{ config('app.name') }} until the Free Trial has expired. On the last day of the Free Trial period, unless you canceled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
+        At any time and without notice, {{ config('app.name') }} reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -55,11 +55,11 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }}, in its sole discretion and at any time, may modify the Subscription fees for the Subscriptions. Any Subscription fee change will become effective at the end of the then-current Billing Cycle.
+        {{ config('app.name') }}, in its sole discretion and at any time, may modify the Subscription fees for the Subscriptions. Any Subscription fee change will become effective at the end of the then-current Billing Cycle.
         </p>
 
         <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }} will provide you with reasonable prior notice of any change in Subscription fees to give you an opportunity to terminate your Subscription before such change becomes effective.
+        {{ config('app.name') }} will provide you with reasonable prior notice of any change in Subscription fees to give you an opportunity to terminate your Subscription before such change becomes effective.
         </p>
 
         <p class="mb-6">
@@ -72,7 +72,7 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        Certain refund requests for Subscriptions may be considered by {{ config('app.name', 'SaaSykit') }} on a case-by-case basis and granted in the sole discretion of {{ config('app.name', 'SaaSykit') }}.
+        Certain refund requests for Subscriptions may be considered by {{ config('app.name') }} on a case-by-case basis and granted in the sole discretion of {{ config('app.name') }}.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -89,11 +89,11 @@
         </p>
 
         <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }} has the right but not the obligation to monitor and edit all Content provided by users.
+        {{ config('app.name') }} has the right but not the obligation to monitor and edit all Content provided by users.
         </p>
 
         <p class="mb-6">
-        In addition, Content found on or through this Service is the property of {{ config('app.name', 'SaaSykit') }} or used with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said Content, whether in whole or in part, for commercial purposes or for personal gain, without express advance written permission from us.
+        In addition, Content found on or through this Service is the property of {{ config('app.name') }} or used with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said Content, whether in whole or in part, for commercial purposes or for personal gain, without express advance written permission from us.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -115,7 +115,7 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of {{ config('app.name', 'SaaSykit') }} and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of {{ config('app.name', 'SaaSykit') }}.
+        The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of {{ config('app.name') }} and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of {{ config('app.name') }}.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -123,12 +123,12 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        Our Service may contain links to third-party websites or services that are not owned or controlled by {{ config('app.name', 'SaaSykit') }}.
-        {{ config('app.name', 'SaaSykit') }} has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third-party websites or services. We do not warrant the offerings of any of these entities/individuals or their websites
+        Our Service may contain links to third-party websites or services that are not owned or controlled by {{ config('app.name') }}.
+        {{ config('app.name') }} has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third-party websites or services. We do not warrant the offerings of any of these entities/individuals or their websites
         </p>
 
         <p class="mb-6">
-        You acknowledge and agree that {{ config('app.name', 'SaaSykit') }} shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such third-party websites or services.
+        You acknowledge and agree that {{ config('app.name') }} shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such third-party websites or services.
         </p>
 
         <p class="mb-6">
@@ -153,7 +153,7 @@
         </x-heading.h2>
 
         <p class="mb-6">
-        In no event shall {{ config('app.name', 'SaaSykit') }}, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.
+        In no event shall {{ config('app.name') }}, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">
@@ -165,7 +165,7 @@
         </p>
 
         <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }} its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure, or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.
+        {{ config('app.name') }} its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure, or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.
         </p>
 
         <x-heading.h2 class="text-xl mb-2">

@@ -15,7 +15,7 @@
 
         <div class="flex justify-between">
             <a href="{{route('home')}}">
-                <img src="{{asset(config('app.logo.dark') )}}" class="inline-block h-6 m-6" alt="Logo" />
+                <x-app.brand variant="dark" height="h-6" class="m-6" />
             </a>
 
             @if($backButton)

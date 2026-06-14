@@ -11,7 +11,7 @@ class HomeControllerTest extends FeatureTest
         $response = $this->get(route('home'));
 
         $response->assertOk();
-        $response->assertSee(__('Start free trial'), false);
+        $response->assertSee(__('Start 7-day trial'), false);
         $response->assertSee(__('Pricing'), false);
     }
 

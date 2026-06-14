@@ -31,7 +31,7 @@ class SubscriptionCheckoutControllerTest extends FeatureTest
 
         $response->assertStatus(200);
 
-        $response->assertSee('Complete Subscription');
+        $response->assertSee('Subscribe now');
     }
 
     public function test_checkout_loads_for_plan_with_trial()
@@ -58,10 +58,10 @@ class SubscriptionCheckoutControllerTest extends FeatureTest
 
         $response->assertStatus(200);
 
-        $response->assertSee('Complete Subscription');
+        $response->assertSee('Subscribe now');
     }
 
-    public function test_checkout_loads_for_plan_with_trial_without_payment_details_enabled()
+    public function test_trial_checkout_loads_when_trial_without_payment_enabled()
     {
         config(['app.trial_without_payment.enabled' => true]);
 
@@ -81,12 +81,39 @@ class SubscriptionCheckoutControllerTest extends FeatureTest
             'price' => 100,
         ]);
 
-        $response = $this->followingRedirects()->get(route('checkout.subscription', [
+        $response = $this->get(route('checkout.trial', [
             'planSlug' => $plan->slug,
         ]));
 
         $response->assertStatus(200);
+        $response->assertSee('Start your trial');
+    }
 
-        $response->assertSee('Complete Subscription');
+    public function test_paid_checkout_always_loads_stripe_form_even_when_trial_enabled()
+    {
+        config(['app.trial_without_payment.enabled' => true]);
+
+        $planSlug = 'plan-slug-'.rand(1, 1000000);
+
+        $plan = Plan::factory()->create([
+            'slug' => $planSlug,
+            'is_active' => true,
+            'has_trial' => true,
+            'trial_interval_count' => 7,
+            'trial_interval_id' => Interval::where('slug', 'day')->first()->id,
+        ]);
+
+        PlanPrice::create([
+            'plan_id' => $plan->id,
+            'currency_id' => Currency::where('code', 'USD')->first()->id,
+            'price' => 100,
+        ]);
+
+        $response = $this->get(route('checkout.subscription', [
+            'planSlug' => $plan->slug,
+        ]));
+
+        $response->assertStatus(200);
+        $response->assertSee('Subscribe now');
     }
 }

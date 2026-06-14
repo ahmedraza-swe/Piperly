@@ -7,7 +7,7 @@
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
                 <a href="/" class="flex items-center">
-                    <img src="{{asset(config('app.logo.light') )}}" class="h-6 me-3" alt="Logo" />
+                    <x-app.brand height="h-6" />
                 </a>
             </div>
             <ul class="flex flex-wrap gap-x-6 gap-y-3 text-primary-100 text-sm mt-2">

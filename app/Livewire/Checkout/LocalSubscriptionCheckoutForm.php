@@ -17,6 +17,13 @@ use App\Validator\RegisterValidator;
 
 class LocalSubscriptionCheckoutForm extends CheckoutForm
 {
+    public function mount(string $intro = ''): void
+    {
+        parent::mount($intro);
+
+        $this->minimalSignup = config('app.trial_without_payment.minimal_signup', true);
+    }
+
     private PlanService $planService;
 
     private SessionService $sessionService;
@@ -57,6 +64,7 @@ class LocalSubscriptionCheckoutForm extends CheckoutForm
             'totals' => $totals,
             'otpEnabled' => config('app.otp_login_enabled'),
             'otpVerified' => $this->otpVerified,
+            'minimalSignup' => $this->minimalSignup,
         ]);
     }
 
@@ -81,12 +89,14 @@ class LocalSubscriptionCheckoutForm extends CheckoutForm
             return redirect()->route('login');
         }
 
-        if (! $this->subscriptionService->canUserHaveSubscriptionTrial(auth()->user())) {
-            return redirect()->route('home');
-        }
-
         $subscriptionCheckoutDto = $this->sessionService->getSubscriptionCheckoutDto();
         $planSlug = $subscriptionCheckoutDto->planSlug;
+
+        if (! $this->subscriptionService->canUserHaveSubscriptionTrial(auth()->user())) {
+            return redirect()
+                ->route('checkout.subscription', ['planSlug' => $planSlug])
+                ->with('error', __('You already used your free trial on this account. Subscribe to continue, or use a different email for a new trial.'));
+        }
 
         $plan = $this->planService->getActivePlanBySlug($planSlug);
 

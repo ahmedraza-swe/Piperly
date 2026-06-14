@@ -1,6 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://saasykit.com/images/logo-dark.png" width="400" alt="Laravel Logo"></a></p>
 
-## CRMercy (this project)
+## Piperly (this project)
 
 Multi-tenant CRM on SaaSykit: platform admin (`/admin`), tenant workspaces (`/dashboard`), marketing home, trials, and billing.
 

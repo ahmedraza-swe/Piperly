@@ -13,6 +13,7 @@ If `intl` is missing, those calls throw `RuntimeException` and Filament pages (f
 
 - **`App\Support\IntlSafeNumber`** — safe integer-style formatting when `intl` is off.
 - **`App\Support\LocaleMoney`** — currency display for CRM columns without `Number::currency()` when `intl` is off.
+- **`@money` Blade directive** — overridden in `AppServiceProvider` to use `LocaleMoney::formatMinorUnits()` (checkout, pricing, trial flow).
 - **Published Blade overrides** (take precedence over vendor only for this app):
   - `resources/views/vendor/filament/components/pagination/index.blade.php`
   - `resources/views/vendor/filament/components/pagination/item.blade.php`

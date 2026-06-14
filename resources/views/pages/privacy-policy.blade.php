@@ -9,7 +9,7 @@
     </x-heading.h1>
 
     <p class="mb-6">
-        {{ config('app.name', 'SaaSykit') }} (“us”, “we”, or “our”) operates the {{ config('app.url', '') }} website (the “Service”).
+        {{ config('app.name') }} (“us”, “we”, or “our”) operates the {{ config('app.url', '') }} website (the “Service”).
         This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
     </p>
 
@@ -111,7 +111,7 @@
             Use of Data
     </x-heading.h2>
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} uses the collected data for various purposes:
+            {{ config('app.name') }} uses the collected data for various purposes:
     </p>
     <p class="mb-6">
             To provide and maintain our Service
@@ -143,10 +143,10 @@
     </x-heading.h2>
 
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+            {{ config('app.name') }} will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
     </p>
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of our Service, or we are legally obligated to retain this data for longer time periods.
+            {{ config('app.name') }} will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of our Service, or we are legally obligated to retain this data for longer time periods.
     </p>
 
     <x-heading.h2 class="text-xl mb-2">
@@ -158,7 +158,7 @@
     </p>
 
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal
+            {{ config('app.name') }} will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal
             Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.
     </p>
 
@@ -166,27 +166,27 @@
             Business Transaction:
     </x-heading.h2>
     <p class="mb-6">
-            If {{ config('app.name', 'SaaSykit') }} is involved in a merger, acquisition or asset sale, your Personal Data may be transferred. We will provide notice before your Personal Data is transferred and becomes subject to a different Privacy Policy.
+            If {{ config('app.name') }} is involved in a merger, acquisition or asset sale, your Personal Data may be transferred. We will provide notice before your Personal Data is transferred and becomes subject to a different Privacy Policy.
     </p>
 
     <x-heading.h2 class="text-xl mb-2">
             Disclosure for Law Enforcement:
     </x-heading.h2>
     <p class="mb-6">
-            Under certain circumstances, {{ config('app.name', 'SaaSykit') }} may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
+            Under certain circumstances, {{ config('app.name') }} may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
     </p>
 
     <x-heading.h2 class="text-xl mb-2">
             Legal Requirements:
     </x-heading.h2>
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} may disclose your Personal Data in the good faith belief that such action is necessary to:
+            {{ config('app.name') }} may disclose your Personal Data in the good faith belief that such action is necessary to:
     </p>
     <p class="mb-6">
             To comply with a legal obligation
     </p>
     <p class="mb-6">
-            To protect and defend the rights or property of {{ config('app.name', 'SaaSykit') }}
+            To protect and defend the rights or property of {{ config('app.name') }}
     </p>
     <p class="mb-6">
             To prevent or investigate possible wrongdoing in connection with the Service
@@ -220,7 +220,7 @@
     </x-heading.h2>
 
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
+            {{ config('app.name') }} aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
     </p>
     <p class="mb-6">
             Whenever made possible, you can update your Personal Data directly within your account settings section. If you are unable to change your Personal Data, please contact us to make the required changes.
@@ -241,7 +241,7 @@
             To request the deletion of Personal Data held about you
     </p>
     <p class="mb-6">
-            You have the right to data portability for the information you provide to {{ config('app.name', 'SaaSykit') }}. You can request to obtain a copy of your Personal Data in a commonly used electronic format so that you can manage and move it.
+            You have the right to data portability for the information you provide to {{ config('app.name') }}. You can request to obtain a copy of your Personal Data in a commonly used electronic format so that you can manage and move it.
     </p>
     <p class="mb-6">
             Please note that we may ask you to verify your identity before responding to such requests.
@@ -282,7 +282,7 @@
     </x-heading.h3>
 
     <p class="mb-6">
-            {{ config('app.name', 'SaaSykit') }} uses remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimize and serve ads based on your past visits to our Service.
+            {{ config('app.name') }} uses remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimize and serve ads based on your past visits to our Service.
     </p>
 
     <x-heading.h3 class="text-lg mb-2">

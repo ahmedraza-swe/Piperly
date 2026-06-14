@@ -22,7 +22,9 @@
             @if($otpEnabled)
                 @include('livewire.checkout.partials.one-time-password')
             @else
-                @include('livewire.checkout.partials.traditional-login-or-register')
+                @include('livewire.checkout.partials.traditional-login-or-register', [
+                    'minimalSignup' => $minimalSignup ?? false,
+                ])
             @endif
 
             @if(empty($email))

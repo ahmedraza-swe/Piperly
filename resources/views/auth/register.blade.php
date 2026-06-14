@@ -19,8 +19,16 @@
                 {{ __('Register.') }}
             </x-heading.h1>
             <p class="mt-4">
-                {{ __('Create an account to get started.') }}
+                {{ __('Create your account and workspace to get started.') }}
             </p>
+            @if (config('app.trial_without_payment.enabled'))
+                <div class="mt-6 rounded-2xl border border-primary-200 bg-primary-50/80 p-5">
+                    <p class="text-sm font-semibold text-primary-900">{{ __('Includes a 7-day free trial') }}</p>
+                    <p class="mt-2 text-sm text-primary-800">
+                        {{ __('No credit card required. Your trial starts as soon as you register.') }}
+                    </p>
+                </div>
+            @endif
         </div>
     </x-slot>
 

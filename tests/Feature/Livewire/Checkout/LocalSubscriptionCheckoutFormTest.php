@@ -86,6 +86,47 @@ class LocalSubscriptionCheckoutFormTest extends FeatureTest
         $this->assertEquals($tenantsBefore + 1, Tenant::count());
     }
 
+    public function test_can_checkout_new_user_with_minimal_signup_without_password()
+    {
+        config([
+            'app.trial_without_payment.enabled' => true,
+            'app.trial_without_payment.minimal_signup' => true,
+        ]);
+
+        $planSlug = 'plan-slug-'.rand(1, 1000000);
+
+        $sessionDto = new SubscriptionCheckoutDto;
+        $sessionDto->planSlug = $planSlug;
+
+        $this->withSession([SessionConstants::SUBSCRIPTION_CHECKOUT_DTO => $sessionDto]);
+
+        $plan = Plan::factory()->create([
+            'slug' => $planSlug,
+            'is_active' => true,
+            'has_trial' => true,
+            'trial_interval_count' => 7,
+            'trial_interval_id' => Interval::where('slug', 'day')->first()->id,
+        ]);
+
+        PlanPrice::create([
+            'plan_id' => $plan->id,
+            'currency_id' => Currency::where('code', 'USD')->first()->id,
+            'price' => 100,
+        ]);
+
+        Event::fake();
+
+        $email = 'minimal+'.rand(1, 1000000).'@gmail.com';
+        Livewire::test(LocalSubscriptionCheckoutForm::class)
+            ->set('name', 'Trial User')
+            ->set('email', $email)
+            ->call('checkout')
+            ->assertRedirect(route('checkout.subscription.success'));
+
+        $this->assertDatabaseHas('users', ['email' => $email]);
+        $this->assertAuthenticated();
+    }
+
     public function test_can_checkout_existing_user()
     {
         config(['app.trial_without_payment.enabled' => true]);

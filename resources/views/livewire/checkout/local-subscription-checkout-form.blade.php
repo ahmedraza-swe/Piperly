@@ -4,11 +4,21 @@
 
         <x-section.columns class="max-w-none md:max-w-6xl flex-wrap-reverse">
 
-            @guest
+            @auth
             <x-section.column>
-                @include('livewire.checkout.partials.login-or-register')
+                <x-heading.h2 class="text-primary-900 text-xl!">{{ __('Your account') }}</x-heading.h2>
+                <div class="rounded-2xl border border-neutral-200 mt-4 p-6 text-sm text-neutral-700">
+                    <p>{{ __('Signed in as') }} <strong>{{ auth()->user()->email }}</strong></p>
+                    <p class="mt-2 text-xs text-neutral-500">{{ __('Click below to start your trial on this account.') }}</p>
+                </div>
             </x-section.column>
-            @endguest
+            @else
+            <x-section.column>
+                @include('livewire.checkout.partials.login-or-register', [
+                    'minimalSignup' => $minimalSignup ?? false,
+                ])
+            </x-section.column>
+            @endauth
 
             <x-section.column>
                 @include('livewire.checkout.partials.plan-details', ['canAddDiscount' => false])

@@ -27,4 +27,14 @@ final class LocaleMoney
             default => number_format($float, 2).' '.strtoupper($currency),
         };
     }
+
+    /** Plan prices are stored in minor units (cents). */
+    public static function formatMinorUnits(int|float|null $amount, string $currency = 'USD'): string
+    {
+        if ($amount === null) {
+            return '';
+        }
+
+        return self::currency(((float) $amount) / 100, $currency) ?? '';
+    }
 }

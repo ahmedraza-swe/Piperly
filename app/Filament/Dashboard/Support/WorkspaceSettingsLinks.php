@@ -3,13 +3,13 @@
 namespace App\Filament\Dashboard\Support;
 
 use App\Constants\TenancyPermissionConstants;
+use App\Filament\Dashboard\Pages\BillingAndPlans;
 use App\Filament\Dashboard\Pages\Team;
 use App\Filament\Dashboard\Pages\TenantSettings;
 use App\Filament\Dashboard\Pages\WorkspacePipelineSettings;
 use App\Filament\Dashboard\Resources\Invitations\InvitationResource;
 use App\Filament\Dashboard\Resources\Orders\OrderResource;
 use App\Filament\Dashboard\Resources\Roles\RoleResource;
-use App\Filament\Dashboard\Resources\Subscriptions\SubscriptionResource;
 use App\Filament\Dashboard\Resources\Transactions\TransactionResource;
 use App\Models\Tenant;
 use App\Models\User;
@@ -84,10 +84,10 @@ class WorkspaceSettingsLinks
         $billing = [];
         if ($permissions->tenantUserHasPermissionTo($tenant, $user, TenancyPermissionConstants::PERMISSION_VIEW_SUBSCRIPTIONS)) {
             $billing[] = self::item(
-                __('Subscriptions'),
-                __('Plans, renewals, and subscription changes for this workspace.'),
-                SubscriptionResource::getUrl('index', panel: 'dashboard'),
-                'heroicon-o-fire',
+                __('Billing & Plans'),
+                __('View your trial or subscription, upgrade, or choose a paid plan.'),
+                BillingAndPlans::getUrl(panel: 'dashboard'),
+                'heroicon-o-credit-card',
             );
         }
         if ($permissions->tenantUserHasPermissionTo($tenant, $user, TenancyPermissionConstants::PERMISSION_VIEW_ORDERS)) {

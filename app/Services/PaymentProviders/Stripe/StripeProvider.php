@@ -24,6 +24,7 @@ use App\Services\DiscountService;
 use App\Services\OneTimeProductService;
 use App\Services\PaymentProviders\PaymentProviderInterface;
 use App\Services\PlanService;
+use App\Services\SessionService;
 use App\Services\SubscriptionService;
 use Carbon\Carbon;
 use Exception;
@@ -80,7 +81,9 @@ class StripeProvider implements PaymentProviderInterface
                 ],
             ];
 
-            $shouldSkipTrial = $this->subscriptionService->shouldSkipTrial($subscription);
+            $checkoutDto = app(SessionService::class)->getSubscriptionCheckoutDto();
+            $shouldSkipTrial = $this->subscriptionService->shouldSkipTrial($subscription)
+                || $checkoutDto->skipPaymentProviderTrial;
 
             if (! $shouldSkipTrial && $trialDays > 0) {
                 $sessionCreationObject['subscription_data']['trial_period_days'] = $trialDays;

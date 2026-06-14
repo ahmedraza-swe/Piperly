@@ -15,9 +15,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CRMercy'),
+    'name' => env('APP_NAME', 'Piperly'),
 
-    'description' => env('APP_DESCRIPTION', ''),
+    'description' => env('APP_DESCRIPTION', 'Piperly is the multi-tenant CRM for leads, deals, contacts, and sales follow-ups.'),
 
     /*
     |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ return [
 
     'default_currency' => 'USD',
 
-    'support_email' => 'support@crmercy.com',
+    'support_email' => 'support@piperly.com',
 
     'email_color_tint' => '#6f27e5',  // used to add brand color to email templates (since it's not possible to use tailwind vars in emails)
 
@@ -179,8 +179,8 @@ return [
 
     // this is the name of the logo file in the public directory
     'logo' => [
-        'light' => 'images/logo-light.png',
-        'dark' => 'images/logo-dark.png',
+        'light' => 'images/logo-light.svg',
+        'dark' => 'images/logo-dark.svg',
     ],
 
     'sitemap_auto_generation_enabled' => env('SITEMAP_AUTO_GENERATION_ENABLED', false),
@@ -194,6 +194,7 @@ return [
 
     'trial_without_payment' => [
         'enabled' => env('TRIAL_WITHOUT_PAYMENT_ENABLED', false),
+        'minimal_signup' => env('TRIAL_WITHOUT_PAYMENT_MINIMAL_SIGNUP', true),
         'first_reminder_enabled' => env('TRIAL_WITHOUT_PAYMENT_FIRST_REMINDER_ENABLED', true),
         'first_reminder_days' => env('TRIAL_WITHOUT_PAYMENT_FIRST_REMINDER_DAYS', 3),
         'second_reminder_enabled' => env('TRIAL_WITHOUT_PAYMENT_SECOND_REMINDER_ENABLED', true),

@@ -49,8 +49,8 @@ return [
          * Default attributes for Seller::class
          */
         'attributes' => [
-            'name' => 'CRMercy Company',
-            'address' => 'CRMercy Street 123',
+            'name' => 'Piperly Company',
+            'address' => 'Piperly Street 123',
             'code' => '',
             'vat' => '',
             'phone' => '',

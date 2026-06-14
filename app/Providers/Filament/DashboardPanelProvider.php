@@ -42,6 +42,8 @@ class DashboardPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('dashboard')
             ->brandName(fn () => config('app.name').' · '.__('CRM'))
+            ->brandLogo(asset(config('app.logo.dark')))
+            ->brandLogoHeight('1.75rem')
             ->colors([
                 'primary' => Color::Teal,
             ])
