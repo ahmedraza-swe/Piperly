@@ -1,0 +1,20 @@
+# Render — Piperly (Docker web + Redis)
+# MySQL: use an external host (PlanetScale, Railway, Aiven) — set DB_* env vars in Render.
+services:
+  - type: web
+    name: piperly
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: VITE_USE_DEV_SERVER
+        value: false
+
+  - type: redis
+    name: piperly-redis
+    plan: starter
+    ipAllowList: []
