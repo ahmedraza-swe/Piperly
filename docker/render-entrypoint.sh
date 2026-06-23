@@ -16,8 +16,12 @@ php artisan view:clear
 
 if php artisan migrate --force; then
     echo "==> Migrations OK"
+
+    # No Render Shell needed — seed + branding run automatically on each deploy
+    php artisan db:seed --force || echo "==> Seed skipped or partial"
+    php artisan platform:apply-branding || true
 else
-    echo "==> WARNING: migrations failed — check DB_* env vars in Render"
+    echo "==> WARNING: migrations failed — set DB_* env vars in Render Environment"
 fi
 
 php artisan config:cache
