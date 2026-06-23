@@ -32,4 +32,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
 
 EXPOSE 8080
 
-CMD ["docker/deploy-entrypoint.sh"]
+CMD ["sh", "docker/deploy-entrypoint.sh"]

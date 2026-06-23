@@ -11,7 +11,13 @@ storage/framework/views/*
 !.env.example
 !.env.production.example
 tests
-docker
+# Sail dev images only — keep production deploy scripts in docker/
+docker/8.0
+docker/8.1
+docker/8.2
+docker/8.3
+docker/mysql
+docker/pgsql
 .phpunit.cache
 .idea
 .vscode
