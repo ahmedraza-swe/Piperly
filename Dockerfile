@@ -19,9 +19,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . .
 
-RUN chmod +x docker/render-entrypoint.sh
+RUN chmod +x docker/deploy-entrypoint.sh docker/railway-env.sh
 
-# Build-time key only — Render injects real env vars at runtime
+# Build-time key only — platform injects real env vars at runtime
 ENV APP_KEY=base64:EcjAm1p7YpnFjru2lEGYxXoisoiBAQiWnw6csnOULxE=
 ENV APP_ENV=production
 ENV APP_DEBUG=false
@@ -30,6 +30,6 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && npm ci \
     && npm run build
 
-EXPOSE 10000
+EXPOSE 8080
 
-CMD ["docker/render-entrypoint.sh"]
+CMD ["docker/deploy-entrypoint.sh"]
