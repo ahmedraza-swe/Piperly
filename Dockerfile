@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . .
 
+RUN chmod +x docker/render-entrypoint.sh
+
 # Build-time key only — Render injects real env vars at runtime
 ENV APP_KEY=base64:EcjAm1p7YpnFjru2lEGYxXoisoiBAQiWnw6csnOULxE=
 ENV APP_ENV=production
@@ -30,4 +32,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["docker/render-entrypoint.sh"]
