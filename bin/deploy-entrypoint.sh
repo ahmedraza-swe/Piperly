@@ -4,7 +4,7 @@ set -e
 cd /var/www/html
 
 # Railway MySQL + APP_URL auto-mapping
-. /var/www/html/docker/railway-env.sh
+. /var/www/html/bin/railway-env.sh
 
 echo "==> Piperly deploy boot"
 

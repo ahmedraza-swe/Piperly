@@ -1,4 +1,4 @@
-# Piperly — production image for Render / Docker hosts
+# Piperly — production image for Render / Railway / Docker hosts
 FROM php:8.3-cli-bookworm
 
 WORKDIR /var/www/html
@@ -17,9 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+# Copy deploy scripts explicitly first (never blocked by .dockerignore sail paths)
+COPY --chmod=755 bin/deploy-entrypoint.sh bin/railway-env.sh /var/www/html/bin/
 
-RUN chmod +x docker/deploy-entrypoint.sh docker/railway-env.sh
+COPY . .
 
 # Build-time key only — platform injects real env vars at runtime
 ENV APP_KEY=base64:EcjAm1p7YpnFjru2lEGYxXoisoiBAQiWnw6csnOULxE=
@@ -32,4 +33,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
 
 EXPOSE 8080
 
-CMD ["sh", "docker/deploy-entrypoint.sh"]
+CMD ["sh", "bin/deploy-entrypoint.sh"]

@@ -86,7 +86,7 @@ If app stays on **Render** but DB is on **Railway**:
 
 | Problem | Fix |
 |---------|-----|
-| Build failed (`chmod: deploy-entrypoint.sh`) | Fixed in repo — `.dockerignore` must not exclude `docker/deploy-entrypoint.sh` |
+| Build failed (`chmod: deploy-entrypoint.sh`) | Redeploy latest `main` — scripts live in `bin/` and are copied explicitly in Dockerfile |
 | 500 on home | Check `/healthz` — if `database: down`, fix MySQL vars |
 | Migrations failed in logs | Add MySQL service to same project or set `DB_*` |
 | Assets broken | `VITE_USE_DEV_SERVER=false` (assets built in Docker) |
