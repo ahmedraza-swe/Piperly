@@ -12,10 +12,17 @@ One Railway project: **Web service** (Docker) + **MySQL** database. Migrations a
 
 1. In the same project → **+ New** → **Database** → **MySQL**
 2. Wait until MySQL shows **Active**
+3. On the **Piperly web service** → **Variables** → add references from MySQL (service name may be `MySQL`):
 
-Railway injects: `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE`, `MYSQL_URL`
+```
+MYSQLHOST=${{MySQL.MYSQLHOST}}
+MYSQLPORT=${{MySQL.MYSQLPORT}}
+MYSQLUSER=${{MySQL.MYSQLUSER}}
+MYSQLPASSWORD=${{MySQL.MYSQLPASSWORD}}
+MYSQLDATABASE=${{MySQL.MYSQLDATABASE}}
+```
 
-The deploy entrypoint maps these to Laravel automatically.
+The deploy entrypoint maps `MYSQL*` → Laravel `DB_*` automatically.
 
 ## 3. Set environment variables (Web service)
 
@@ -34,16 +41,6 @@ Open your **Piperly web service** → **Variables** → **RAW Editor** and paste
 | `QUEUE_CONNECTION` | `database` |
 | `LOG_CHANNEL` | `stderr` |
 | `VITE_USE_DEV_SERVER` | `false` |
-
-Optional — explicit DB reference (usually not needed, auto-mapped):
-
-```
-DB_HOST=${{MySQL.MYSQLHOST}}
-DB_PORT=${{MySQL.MYSQLPORT}}
-DB_DATABASE=${{MySQL.MYSQLDATABASE}}
-DB_USERNAME=${{MySQL.MYSQLUSER}}
-DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
-```
 
 ## 4. Generate public URL
 
@@ -86,8 +83,8 @@ If app stays on **Render** but DB is on **Railway**:
 
 | Problem | Fix |
 |---------|-----|
-| Build failed (`chmod: deploy-entrypoint.sh`) | Redeploy latest `main` — scripts live in `bin/` and are copied explicitly in Dockerfile |
-| 500 on home | Check `/healthz` — if `database: down`, fix MySQL vars |
+| Healthcheck failure (build OK) | Add MySQL + `MYSQL*` variable references on web service; healthcheck uses `/up` |
+| Build failed (`chmod: deploy-entrypoint.sh`) | Redeploy latest `main` — scripts live in `bin/` |
 | Migrations failed in logs | Add MySQL service to same project or set `DB_*` |
 | Assets broken | `VITE_USE_DEV_SERVER=false` (assets built in Docker) |
 | Wrong app name | Runs `platform:apply-branding` on each deploy |
