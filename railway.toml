@@ -1,3 +1,4 @@
+# Piperly on Railway — Docker build from repo root (commit 02f9230+)
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
