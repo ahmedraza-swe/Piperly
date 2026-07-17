@@ -17,3 +17,10 @@ fi
 if [ -n "${RAILWAY_PUBLIC_DOMAIN:-}" ] && [ -z "${APP_URL:-}" ]; then
     export APP_URL="https://${RAILWAY_PUBLIC_DOMAIN}"
 fi
+
+# Render / Railway: never emit http:// asset URLs (mixed content = no CSS)
+if [ -n "${APP_URL:-}" ]; then
+    export APP_URL="$(printf '%s' "$APP_URL" | sed 's|^http://|https://|')"
+elif [ -n "${RENDER_EXTERNAL_URL:-}" ]; then
+    export APP_URL="$(printf '%s' "$RENDER_EXTERNAL_URL" | sed 's|^http://|https://|')"
+fi

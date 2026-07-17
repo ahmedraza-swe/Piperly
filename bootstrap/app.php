@@ -11,6 +11,9 @@ return Illuminate\Foundation\Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Render / Railway terminate TLS — trust X-Forwarded-* so asset URLs use https
+        $middleware->trustProxies(at: '*');
+
         $middleware->appendToGroup('web', [
             App\Http\Middleware\BlockedUser::class,
             App\Http\Middleware\UpdateUserLastSeenAt::class,

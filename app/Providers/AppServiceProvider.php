@@ -30,6 +30,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -71,6 +72,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->ensureHttpsAssetUrls();
         $this->ensureViteUsesCompiledAssets();
 
         Event::listen(Registered::class, CreateTenantIfNeeded::class);
@@ -110,9 +112,22 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Stale public/hot makes Laravel load CSS/JS from the Vite dev server. If npm run dev
-     * is not running, pages look unstyled (often noticed right after login). Use compiled
-     * assets unless VITE_USE_DEV_SERVER=true in .env.
+     * Behind Render/Railway TLS proxies, asset()/Vite URLs must be https or the
+     * browser blocks CSS/JS as mixed content (page looks unstyled).
+     */
+    private function ensureHttpsAssetUrls(): void
+    {
+        $appUrl = (string) config('app.url');
+
+        if (str_starts_with($appUrl, 'https://') || $this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+    }
+
+    /**
+     * Stale public/hot makes Laravel load CSS/JS from the Vite dev server. If npm run
+     * is not running, pages look unstyled. Use compiled assets unless
+     * VITE_USE_DEV_SERVER=true in .env.
      */
     private function ensureViteUsesCompiledAssets(): void
     {
