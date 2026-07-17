@@ -32,10 +32,16 @@ class All extends Component
 
     protected function calculateViewData()
     {
-        $plans = $this->planService->getAllPlansWithPrices(
-            $this->products,
-            onlyVisible: true,
-        );
+        try {
+            $plans = $this->planService->getAllPlansWithPrices(
+                $this->products,
+                onlyVisible: true,
+            );
+        } catch (\Throwable $e) {
+            report($e);
+
+            return $this->enrichViewData([], collect());
+        }
 
         return $this->enrichViewData([], $plans);
     }

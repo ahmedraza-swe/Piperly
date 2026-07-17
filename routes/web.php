@@ -6,7 +6,6 @@ use App\Http\Controllers\PaymentProviders\PaddleController;
 use App\Services\SessionService;
 use App\Services\TenantCreationService;
 use App\Services\UserDashboardService;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,21 +31,7 @@ Route::get('/app', function () {
     return view('app.landing');
 })->name('app.landing')->middleware('auth');
 
-Route::get('/healthz', function () {
-    try {
-        DB::connection()->getPdo();
-        $database = 'ok';
-    } catch (\Throwable $e) {
-        $database = 'down';
-    }
-
-    return response()->json([
-        'status' => $database === 'ok' ? 'ok' : 'degraded',
-        'app' => 'ok',
-        'database' => $database,
-        'timestamp' => now()->toIso8601String(),
-    ], $database === 'ok' ? 200 : 503);
-})->name('healthz');
+// /healthz is registered without web middleware in bootstrap/app.php
 
 Route::get('/dashboard', function (UserDashboardService $dashboardService) {
     return redirect($dashboardService->getUserDashboardUrl(Auth::user()));
