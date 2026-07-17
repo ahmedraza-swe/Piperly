@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->login()
             ->brandName(fn () => config('app.name').' · '.__('Platform'))
             ->brandLogo(asset(config('app.logo.dark')))
             ->brandLogoHeight('1.75rem')

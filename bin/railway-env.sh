@@ -1,6 +1,6 @@
 #!/bin/sh
 # Map Railway/MySQL plugin env vars → Laravel DB_*
-# Also fix common Render mistakes (localhost DB, redis without Redis service)
+# Also fix common Render mistakes (localhost DB, redis, Railway ${{ }} leftovers)
 
 is_local_host() {
     case "${1:-}" in
@@ -9,8 +9,36 @@ is_local_host() {
     esac
 }
 
-# Prefer MYSQL* when DB_HOST is missing or still pointing at local machine
-if [ -n "${MYSQLHOST:-}" ] && ! is_local_host "$MYSQLHOST"; then
+# Reject unresolved Railway/Render template leftovers like ${{MySQL.MYSQLHOST}}
+is_bad_host() {
+    case "${1:-}" in
+        *'$'*|*'{*'|*'}'*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Wipe broken template hosts before anything else
+if is_bad_host "${DB_HOST:-}"; then
+    echo "==> Clearing invalid DB_HOST=${DB_HOST}"
+    unset DB_HOST
+    export DB_HOST=
+fi
+if is_bad_host "${MYSQLHOST:-}"; then
+    echo "==> Clearing invalid MYSQLHOST=${MYSQLHOST}"
+    unset MYSQLHOST
+    export MYSQLHOST=
+fi
+if is_bad_host "${MYSQL_URL:-}"; then
+    unset MYSQL_URL
+    export MYSQL_URL=
+fi
+if is_bad_host "${DATABASE_URL:-}"; then
+    unset DATABASE_URL
+    export DATABASE_URL=
+fi
+
+# Prefer real MYSQL* when DB_HOST is missing or still pointing at local machine
+if [ -n "${MYSQLHOST:-}" ] && ! is_local_host "$MYSQLHOST" && ! is_bad_host "$MYSQLHOST"; then
     if is_local_host "${DB_HOST:-}" ; then
         export DB_CONNECTION=mysql
         export DB_HOST="$MYSQLHOST"
@@ -22,7 +50,7 @@ if [ -n "${MYSQLHOST:-}" ] && ! is_local_host "$MYSQLHOST"; then
     fi
 fi
 
-if [ -n "${MYSQL_URL:-}" ] && [ -z "${DATABASE_URL:-}" ]; then
+if [ -n "${MYSQL_URL:-}" ] && [ -z "${DATABASE_URL:-}" ] && ! is_bad_host "$MYSQL_URL"; then
     export DATABASE_URL="$MYSQL_URL"
 fi
 
@@ -67,3 +95,5 @@ fi
 if [ -n "${VITE_USE_DEV_SERVER:-}" ]; then
     export VITE_USE_DEV_SERVER="$(printf '%s' "$VITE_USE_DEV_SERVER" | tr -d '\r\n')"
 fi
+
+echo "==> Effective DB_HOST=${DB_HOST:-not-set} DB_PORT=${DB_PORT:-not-set}"
