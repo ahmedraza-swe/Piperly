@@ -5,7 +5,7 @@ cd /var/www/html
 # Railway MySQL + APP_URL auto-mapping
 . /var/www/html/bin/railway-env.sh
 
-# Safe defaults for Render free tier (no Redis)
+# Safe defaults (no Redis required)
 export CACHE_DRIVER="${CACHE_DRIVER:-file}"
 export SESSION_DRIVER="${SESSION_DRIVER:-file}"
 export QUEUE_CONNECTION="${QUEUE_CONNECTION:-database}"
@@ -23,19 +23,14 @@ php artisan config:clear
 php artisan route:clear
 php artisan view:clear
 
-# Start web server immediately so Railway/Render do not wait on migrations/seed
-echo "==> Starting web server on port ${PORT:-8080}"
-php artisan serve --host=0.0.0.0 --port="${PORT:-8080}" &
-SERVER_PID=$!
-sleep 2
-
+# Migrate/seed before serve so Railway tracks php as the main process (avoids 502)
 if php artisan migrate --force; then
     echo "==> Migrations OK"
     php artisan db:seed --force || echo "==> Seed skipped or partial"
     php artisan platform:apply-branding || true
+    php artisan platform:ensure-owner || true
 else
-    echo "==> WARNING: migrations failed — set DB_* on Render (external MySQL)"
-    # Avoid 500s from database session/cache when MySQL is missing
+    echo "==> WARNING: migrations failed — check MYSQL* / DB_* variables"
     export SESSION_DRIVER=file
     export CACHE_DRIVER=file
     export QUEUE_CONNECTION=sync
@@ -45,5 +40,6 @@ php artisan config:cache || php artisan config:clear
 php artisan route:cache || php artisan route:clear
 php artisan view:cache || true
 
-echo "==> Deploy boot complete (pid $SERVER_PID)"
-wait $SERVER_PID
+echo "==> Starting web server on port ${PORT:-8080}"
+# exec = PID 1 so Railway keeps the service healthy
+exec php artisan serve --host=0.0.0.0 --port="${PORT:-8080}"
